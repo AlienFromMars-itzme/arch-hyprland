@@ -1,0 +1,49 @@
+/* ---- Low-Spec Waybar Config ---- */
+/* Optimised for Intel HD 4000 / 4 GB RAM (i3-3120M class hardware).   */
+/* Removed: cava visualiser, mpris, mobo_drawer (cpu/mem/temp/disk),   */
+/*          network#speed, custom/keyboard, power-profiles-daemon.      */
+/* These modules either poll every second or spawn background processes */
+/* that push idle RAM above 800 MB on low-end systems.                  */
+{
+"include": [
+  "$HOME/.config/waybar/Modules",
+  "$HOME/.config/waybar/ModulesWorkspaces",
+  "$HOME/.config/waybar/ModulesCustom",
+  "$HOME/.config/waybar/ModulesGroups"
+  ],
+"layer": "bottom",
+"exclusive": true,
+"passthrough": false,
+"position": "top",
+"spacing": 3,
+"fixed-center": true,
+"ipc": true,
+"margin-top": 3,
+"margin-left": 8,
+"margin-right": 8,
+
+"modules-left": [
+	"clock",
+	"custom/separator#blank",
+	"tray"
+	],
+
+"modules-center": [
+	"hyprland/workspaces#kanji"
+	],
+
+"modules-right": [
+	/* Battery + backlight (polling already raised to 10 s) */
+	"group/laptop",
+	"custom/separator#blank",
+	/* Notification centre — event-driven, zero idle cost */
+	"group/notify",
+	"custom/separator#blank",
+	/* Volume — event-driven via PipeWire/PulseAudio */
+	"group/audio",
+	"custom/separator#dot-line",
+	"custom/separator#blank",
+	/* Power / lock buttons */
+	"group/status"
+	]
+}
